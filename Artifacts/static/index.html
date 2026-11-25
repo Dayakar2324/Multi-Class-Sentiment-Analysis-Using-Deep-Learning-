@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Emotion detection powered by a trained BiGRU model.">
+  <title>Emotion Detection | BiGRU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Emotion Intelligence home">
+      <span class="brand-mark">E</span>
+      <span>Emotion<span class="brand-light"> Intelligence</span></span>
+    </a>
+    <div class="model-tag"><span class="status-dot"></span> BiGRU model</div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro">
+      <p class="eyebrow">NATURAL LANGUAGE PROCESSING</p>
+      <h1>Understand the emotion<br class="desktop-break"> behind the words.</h1>
+      <p class="intro-copy">Enter a sentence and the model will classify its expressed emotion across six categories.</p>
+    </section>
+
+    <section class="workspace" aria-label="Emotion analysis">
+      <div class="input-panel">
+        <div class="section-heading">
+          <div>
+            <p class="step-label">01 / INPUT</p>
+            <h2>Text to analyze</h2>
+          </div>
+          <span class="input-hint">Up to 2,000 characters</span>
+        </div>
+
+        <label class="visually-hidden" for="text-input">Enter text to analyze</label>
+        <textarea id="text-input" maxlength="2000" placeholder="For example: I am grateful for the people who make every day better..." spellcheck="true"></textarea>
+
+        <div class="input-footer">
+          <span id="char-count">0 / 2000</span>
+          <button id="clear-button" class="text-button" type="button">Clear text</button>
+        </div>
+
+        <div class="form-actions">
+          <button id="analyze-button" class="primary-button" type="button">
+            <span id="button-label">Analyze emotion</span>
+            <span class="button-arrow" aria-hidden="true">→</span>
+          </button>
+          <span class="privacy-note">Your text is processed by the configured API.</span>
+        </div>
+        <p id="error-message" class="error-message" role="alert" hidden></p>
+      </div>
+
+      <aside class="result-panel" aria-live="polite">
+        <div class="section-heading">
+          <div>
+            <p class="step-label">02 / RESULT</p>
+            <h2>Model prediction</h2>
+          </div>
+          <span id="result-state" class="result-state">Waiting for input</span>
+        </div>
+
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon" aria-hidden="true">◎</div>
+          <h3>Analysis will appear here</h3>
+          <p>Submit a sentence to see the predicted emotion and the model's confidence scores.</p>
+        </div>
+
+        <div id="prediction-content" hidden>
+          <div class="prediction-summary">
+            <div id="emotion-emoji" class="emotion-emoji" aria-hidden="true">😊</div>
+            <div>
+              <p class="result-caption">PREDICTED EMOTION</p>
+              <h3 id="predicted-emotion">Joy</h3>
+              <p id="confidence-value" class="confidence-value">Confidence: 0%</p>
+            </div>
+          </div>
+
+          <div class="probability-heading">
+            <h3>Class probabilities</h3>
+            <span>Model output</span>
+          </div>
+          <div id="probability-list" class="probability-list"></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="method-note">
+      <div class="method-icon">i</div>
+      <p><strong>About this model</strong><br>Text is normalized, tokenized and padded before being passed to a trained Bidirectional GRU classifier. The model returns a score for each emotion class.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Emotion Intelligence</span>
+    <span>Natural Language Processing · BiGRU</span>
+  </footer>
+</body>
+</html>
